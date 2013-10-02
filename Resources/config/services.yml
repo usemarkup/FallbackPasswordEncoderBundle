@@ -1,0 +1,12 @@
+services:
+    markup_fallback_password_encoder.manipulator:
+        class: Markup\FallbackPasswordEncoderBundle\Manipulator\CompositePasswordManipulator
+        calls:
+            - [ registerFallback, [ @markup_fallback_password_encoder.manipulator.fos_user ] ]
+    markup_fallback_password_encoder.manipulator.fos_user:
+        class: Markup\FallbackPasswordEncoderBundle\Manipulator\FOSUserPasswordManipulator
+        arguments:
+            - @service_container
+    markup_fallback_password_encoder.service_closure:
+        abstract: true
+        class: Markup\FallbackPasswordEncoderBundle\DependencyInjection\ServiceClosure

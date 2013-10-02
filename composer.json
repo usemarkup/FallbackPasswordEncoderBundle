@@ -1,0 +1,29 @@
+{
+    "name": "markup/fallback-password-encoder-bundle",
+    "description": "Bundle providing a password encoder stack for support of legacy user data.",
+    "keywords": ["password", "barcode"],
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Douglas Greenshields",
+            "email": "douglas@usemarkup.com"
+        },
+        {
+            "name": "Markup",
+            "homepage": "http://www.usemarkup.com/"
+        }
+    ],
+    "require": {
+        "friendsofsymfony/user-bundle": "~1.3.2"
+    },
+    "autoload": {
+        "psr-0": { "Markup\\FallbackPasswordEncoderBundle": "" }
+    },
+    "target-dir": "Markup/FallbackPasswordEncoderBundle",
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
