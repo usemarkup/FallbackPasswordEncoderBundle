@@ -3,7 +3,9 @@
 namespace Markup\FallbackPasswordEncoderBundle\Encoder;
 
 use Markup\FallbackPasswordEncoderBundle\Manipulator\PasswordManipulatorInterface;
+use Symfony\Component\Security\Core\Encoder\BasePasswordEncoder;
 use Symfony\Component\Security\Core\Encoder\PasswordEncoderInterface;
+use Symfony\Component\Security\Core\Exception\BadCredentialsException;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -56,11 +58,18 @@ class FallbackPasswordEncoder implements UserAwarePasswordEncoderInterface
 
     public function encodePassword($raw, $salt)
     {
+        if ($this->isPasswordTooLong($raw)) {
+            throw new BadCredentialsException('Invalid password.');
+        }
+
         return $this->getPrimaryEncoder()->encodePassword($raw, $salt);
     }
 
     public function isPasswordValid($encoded, $raw, $salt)
     {
+        if ($this->isPasswordTooLong($raw)) {
+            return false;
+        }
         if ($this->getPrimaryEncoder()->isPasswordValid($encoded, $raw, $salt)) {
             return true;
         }
@@ -74,6 +83,16 @@ class FallbackPasswordEncoder implements UserAwarePasswordEncoderInterface
         }
 
         return false;
+    }
+
+    /**
+     * Checks if the password is too long.
+     *
+     * @return Boolean true if the password is too long, false otherwise
+     */
+    protected function isPasswordTooLong($password)
+    {
+        return strlen($password) > BasePasswordEncoder::MAX_PASSWORD_LENGTH;
     }
 
     /**

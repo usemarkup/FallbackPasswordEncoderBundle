@@ -77,4 +77,22 @@ class FallbackPasswordEncoderTest extends \PHPUnit_Framework_TestCase
             ->with($this->equalTo($this->user), $this->equalTo($password));
         $this->assertTrue($this->encoder->isPasswordValid('dfjghdkfjh', 'iamapassword', 'mmm,salty'));
     }
+
+    public function testEncodePasswordGreaterThan4096ThrowsBadCredentialsException()
+    {
+        $longPassword = str_repeat('a', 4097);
+        $salt = 'mmm,salty';
+        $this->setExpectedException('Symfony\Component\Security\Core\Exception\BadCredentialsException');
+        $this->encoder->encodePassword($longPassword, $salt);
+    }
+
+    public function testPasswordNotValidIfTooLong()
+    {
+        $this->primaryEncoder
+            ->expects($this->any())
+            ->method('isPasswordValid')
+            ->will($this->returnValue(true));
+        $raw = str_repeat('a', 4097);
+        $this->assertFalse($this->encoder->isPasswordValid('ksjkdjfgh', $raw, 'salt'));
+    }
 }
