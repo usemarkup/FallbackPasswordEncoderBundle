@@ -17,6 +17,9 @@
     "require": {
         "friendsofsymfony/user-bundle": "~1.3.2"
     },
+    "require-dev": {
+        "phpunit/phpunit": "~3.7.27"
+    },
     "autoload": {
         "psr-0": { "Markup\\FallbackPasswordEncoderBundle": "" }
     },
