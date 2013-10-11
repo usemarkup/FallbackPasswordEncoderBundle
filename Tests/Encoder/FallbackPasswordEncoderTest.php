@@ -21,7 +21,12 @@ class FallbackPasswordEncoderTest extends \PHPUnit_Framework_TestCase
 
     public function testIsUserAwarePasswordEncoder()
     {
-        $this->assertTrue($this->encoder instanceof \Markup\FallbackPasswordEncoderBundle\Encoder\UserAwarePasswordEncoderInterface);
+        $this->assertInstanceOf('Markup\FallbackPasswordEncoderBundle\Encoder\UserAwarePasswordEncoderInterface', $this->encoder);
+    }
+
+    public function testExtendsBasePasswordEncoder()
+    {
+        $this->assertInstanceOf('Symfony\Component\Security\Core\Encoder\BasePasswordEncoder', $this->encoder);
     }
 
     public function testEncodePasswordUsesPrimaryEncoder()

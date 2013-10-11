@@ -2,7 +2,7 @@
 
 ## About
 
-This Symfony2 bundle offers a strategy to use for password encoding for use with the [friendsofsymfony/user-bundle](https://packagist.org/packages/friendsofsymfony/user-bundle) package (FOSUserBundle).
+This Symfony2 bundle offers a strategy to use for password encoding for use with the [friendsofsymfony/user-bundle](https://packagist.org/packages/friendsofsymfony/user-bundle) package (FOSUserBundle).  It requires version >=2.3.6 of the Symfony Security component.
 
 The use case would be when there is legacy user data with passwords that are hashed using an algorithm that is easy to break, such as MD5.  You'd like to [use bcrypt](http://codahale.com/how-to-safely-store-a-password/), but this means getting all users to reset their passwords.  This bundle allows you to declare a stack of encoders, so that you can run a primary algorithm and a set of fallback algorithms at the same time.  A user with a password hashed using the legacy algorithm will have the stored hash transparently updated to the new, more secure hash the next time they sign in.
 

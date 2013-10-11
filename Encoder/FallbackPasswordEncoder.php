@@ -11,7 +11,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 /**
 * A password encoder that can wrap legacy password encodings and upgrade passwords seamlessly to a primary encoding if they are found to be of a legacy encoding.
 */
-class FallbackPasswordEncoder implements UserAwarePasswordEncoderInterface
+class FallbackPasswordEncoder extends BasePasswordEncoder implements UserAwarePasswordEncoderInterface
 {
     /**
      * The primary encoder that should be used for new passwords.
@@ -83,16 +83,6 @@ class FallbackPasswordEncoder implements UserAwarePasswordEncoderInterface
         }
 
         return false;
-    }
-
-    /**
-     * Checks if the password is too long.
-     *
-     * @return Boolean true if the password is too long, false otherwise
-     */
-    protected function isPasswordTooLong($password)
-    {
-        return strlen($password) > BasePasswordEncoder::MAX_PASSWORD_LENGTH;
     }
 
     /**
