@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<container xmlns="http://symfony.com/schema/dic/services" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="markup_fallback_password_encoder.manipulator" class="Markup\FallbackPasswordEncoderBundle\Manipulator\CompositePasswordManipulator"/>
+        <service id="markup_fallback_password_encoder.manipulator.fos_user" class="Markup\FallbackPasswordEncoderBundle\Manipulator\FOSUserPasswordManipulator">
+            <argument type="service" id="service_container"/>
+        </service>
+        <service id="markup_fallback_password_encoder.service_closure" class="Markup\FallbackPasswordEncoderBundle\DependencyInjection\ServiceClosure"/>
+    </services>
+</container>
