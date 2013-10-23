@@ -10,6 +10,37 @@ The use case would be when there is legacy user data with passwords that are has
 
 The existence of this software should by no means be construed as condoning the strategy itself.  It is far preferable to have all passwords in your system using the same, secure algorithm.  However, you may judge that this strategy is the most pragmatic for your situation - typically when you do not wish to enforce password resetting on your user base.
 
+## Installation
+
+Add MarkupFallbackPasswordEncoderBundle to your composer.json:
+
+```js
+{
+    "require": {
+        "markup/fallback-password-encoder-bundle": "@dev"
+    }
+}
+```
+
+Add MarkupBarcodeBundle to your AppKernel.php:
+
+```php
+    public function registerBundles()
+    {
+        $bundles = array(
+            ...
+            new Markup\FallbackPasswordEncoderBundle\MarkupFallbackPasswordEncoderBundle(),
+        );
+        ...
+    }
+```
+
+Finally, install the bundle using Composer:
+
+```bash
+$ php composer.phar update markup/fallback-password-encoder-bundle
+```
+
 ## Usage
 
 Configuration example:
