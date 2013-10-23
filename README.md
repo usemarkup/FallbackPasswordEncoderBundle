@@ -6,6 +6,8 @@ This Symfony2 bundle offers a strategy to use for password encoding for use with
 
 The use case would be when there is legacy user data with passwords that are hashed using an algorithm that is easy to break, such as MD5.  You'd like to [use bcrypt](http://codahale.com/how-to-safely-store-a-password/), but this means getting all users to reset their passwords.  This bundle allows you to declare a stack of encoders, so that you can run a primary algorithm and a set of fallback algorithms at the same time.  A user with a password hashed using the legacy algorithm will have the stored hash transparently updated to the new, more secure hash the next time they sign in.
 
+Current limitation: bundle does not currently work with Symfony framework encoders, as these are not declared as services.
+
 ## Disclaimer
 
 The existence of this software should by no means be construed as condoning the strategy itself.  It is far preferable to have all passwords in your system using the same, secure algorithm.  However, you may judge that this strategy is the most pragmatic for your situation - typically when you do not wish to enforce password resetting on your user base.
