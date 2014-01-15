@@ -21,6 +21,7 @@ class Configuration implements ConfigurationInterface
         $rootNode = $treeBuilder->root('markup_fallback_password_encoder');
 
         $rootNode
+            ->addDefaultsIfNotSet()
             ->children()
                 ->arrayNode('encoders')
                     ->children()
