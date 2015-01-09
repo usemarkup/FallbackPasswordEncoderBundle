@@ -73,3 +73,5 @@ security:
 ## License
 
 Released under the MIT License. See LICENSE.
+
+[![Build Status](https://api.travis-ci.org/usemarkup/FallbackPasswordEncoderBundle.png?branch=master)](http://travis-ci.org/usemarkup/FallbackPasswordEncoderBundle)
