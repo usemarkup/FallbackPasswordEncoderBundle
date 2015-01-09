@@ -24,7 +24,7 @@ Add MarkupFallbackPasswordEncoderBundle to your composer.json:
 }
 ```
 
-Add MarkupBarcodeBundle to your AppKernel.php:
+Add MarkupFallbackPasswordEncoderBundle to your AppKernel.php:
 
 ```php
     public function registerBundles()
