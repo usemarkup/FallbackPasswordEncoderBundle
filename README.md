@@ -66,8 +66,10 @@ In your security.yml file, you would then specify the fallback encoder as `marku
 ```yml
 security:
     encoders:
-        My\Bundle\CustomerBundle\Entity\Customer: markup_fallback_password_encoder
-        My\Bundle\AdminUserBundle\Entity\AdminUser: markup_fallback_password_encoder
+        My\Bundle\CustomerBundle\Entity\Customer:
+            id: markup_fallback_password_encoder
+        My\Bundle\AdminUserBundle\Entity\AdminUser:
+            id: markup_fallback_password_encoder
 ```
 
 ## License
