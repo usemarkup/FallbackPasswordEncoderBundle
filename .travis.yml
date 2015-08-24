@@ -19,3 +19,5 @@ notifications:
 matrix:
   allow_failures:
     - php: nightly
+
+sudo: false
