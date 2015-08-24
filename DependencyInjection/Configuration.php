@@ -41,6 +41,7 @@ class Configuration implements ConfigurationInterface
                     ->end()
                 ->end()
                 ->arrayNode('manipulators')
+                    ->performNoDeepMerging()
                     ->defaultValue(array())
                     ->prototype('variable')
                     ->end()
