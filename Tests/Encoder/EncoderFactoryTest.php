@@ -3,7 +3,7 @@
 namespace Markup\FallbackPasswordEncoderBundle\Tests\Encoder;
 
 use Markup\FallbackPasswordEncoderBundle\Encoder\EncoderFactory;
-use Symfony\Component\Security\Tests\Core\Encoder\EncoderFactoryTest as BaseEncoderFactoryTest;
+use Symfony\Component\Security\Core\Tests\Encoder\EncoderFactoryTest as BaseEncoderFactoryTest;
 
 /**
 * A test for an encoder factory that allows the fetching of user-aware encoders.
