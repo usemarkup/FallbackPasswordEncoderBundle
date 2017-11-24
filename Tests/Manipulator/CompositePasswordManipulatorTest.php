@@ -6,6 +6,11 @@ use Markup\FallbackPasswordEncoderBundle\Manipulator\CompositePasswordManipulato
 
 class CompositePasswordManipulatorTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var CompositePasswordManipulator
+     */
+    private $manipulator;
+
     protected function setUp()
     {
         $this->manipulator  = new CompositePasswordManipulator();
@@ -73,6 +78,26 @@ class CompositePasswordManipulatorTest extends \PHPUnit_Framework_TestCase
         $user = new TestUser();
         $user->setUsername($username);
         $this->manipulator->registerManipulator(get_class($user), $manipulator);
+        $this->manipulator->changePassword($user, $password);
+    }
+
+    public function testSubclassCanUseParentManipulator()
+    {
+        $manipulator = $this->getMockBuilder('FOS\UserBundle\Util\UserManipulator')
+            ->disableOriginalConstructor()
+            ->getMock();
+        $user = new SubclassTestUser();
+        $username = 'joe@bloggs.com';
+        $user->setUsername($username);
+        $this->manipulator->registerManipulator(
+            'Markup\FallbackPasswordEncoderBundle\Tests\Manipulator\TestUser',
+            $manipulator
+        );
+        $password = 'correcthorsebatterystaple';
+        $manipulator
+            ->expects($this->once())
+            ->method('changePassword')
+            ->with($this->equalTo($username), $this->equalTo($password));
         $this->manipulator->changePassword($user, $password);
     }
 }
