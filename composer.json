@@ -20,7 +20,7 @@
     },
     "require-dev": {
         "phpunit/phpunit": "~4.0",
-        "mockery/mockery": "~0.8"
+        "mockery/mockery": "^1"
     },
     "autoload": {
         "psr-0": { "Markup\\FallbackPasswordEncoderBundle": "" }
