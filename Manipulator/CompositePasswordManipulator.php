@@ -28,7 +28,15 @@ class CompositePasswordManipulator implements PasswordManipulatorInterface
      **/
     public function changePassword(UserInterface $user, $password)
     {
-        if (!isset($this->manipulators[get_class($user)])) {
+        $userClasses = array_merge(array(get_class($user)), class_parents($user));
+        $manipulator = null;
+        foreach ($userClasses as $userClass) {
+            if (isset($this->manipulators[$userClass])) {
+                $manipulator = $this->manipulators[$userClass];
+                break;
+            }
+        }
+        if (!$manipulator) {
             if (null === $this->fallback) {
                 throw new ManipulatorNotRegisteredException(sprintf('No manipulator was available for the user class "%s".', get_class($user)));
             }
@@ -38,7 +46,6 @@ class CompositePasswordManipulator implements PasswordManipulatorInterface
             return;
         }
 
-        $manipulator = $this->manipulators[get_class($user)];
         if (is_callable($manipulator)) {
             $manipulator = call_user_func($manipulator);
         }
